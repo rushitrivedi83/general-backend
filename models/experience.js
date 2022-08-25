@@ -5,7 +5,8 @@ const experienceSchema = mongooose.Schema({
 		position: String,
 		date: String,
 		location: String,
-		Description: String,
+		Description1: String,
+		Description2: String,
 		company: String,
 	},
     { collection: "experiences" }
