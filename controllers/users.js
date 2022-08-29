@@ -27,7 +27,7 @@ export const loginUser = async (req, res, next) => {
 		if (!user) { return res.status(501).json(info); }
 		req.logIn(user, function(err) {
 		  if (err) { console.log(err); return res.status(501).json(err); }
-		  return res.status(200).json({message:'Login Success'});
+		  return res.status(200).json({...user, message:'Login Success'});
 		});
 	  })(req, res, next);
 }
@@ -44,7 +44,7 @@ export const isValidUser = function (req, res, next) {
 export const logout = function (req, res, next) {
 	console.log("Logging out user");
 	req.logout(function(err) {
-		if (err) { return next(err); }
+		if (err) { return res.status(200).json({message: 'Logout Success'}); }
 	  });
 	return res.status(200).json({message: 'Logout Success'});
 }
