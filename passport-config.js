@@ -11,10 +11,10 @@ passport.use('local',new LocalStrategy({
         User.findOne({ email: username }, async function (err, user) {
             if (err) { console.log(err); return done(err); }
             if (!user) {
-                return done(null, false, { message: 'Incorrect username.' });
+                return done(null, false, { message: 'Incorrect email address.' });
             }
-            const isPasswordValid = await bcrypt.compare(user.password, password);
-            if (isPasswordValid) {
+            const isPasswordValid = await bcrypt.compare(password, user.password);
+            if (!isPasswordValid) {
                 return done(null, false, { message: 'Incorrect password.' });
             }
             return done(null, user);
