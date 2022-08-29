@@ -8,6 +8,6 @@ const router = express.Router();
 router.post('/register', registerUser); // Grade all the tests from DB for the testID
 router.post('/login', loginUser);
 router.get('/user', isValidUser, user)
-router.get('/logout', isValidUser, logout);
+router.get('/logout', logout);
 
 export default router;
